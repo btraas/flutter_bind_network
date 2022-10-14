@@ -35,8 +35,8 @@ public class NetworkBinder {
                 completed[0] = connection_manager.bindProcessToNetwork(network);
                 Network an = connection_manager.getActiveNetwork();
                 NetworkInfo ni = connection_manager.getActiveNetworkInfo();
-
                 if(completed[0]) {
+                    Log.i(name, "Bound to network: " + ni.getTypeName() + "/" + ni.getSubtypeName());
                     callback.run();
                 }
             }
@@ -53,6 +53,7 @@ public class NetworkBinder {
                 NetworkInfo ni = connection_manager.getActiveNetworkInfo();
 
                 if(completed[0]) {
+                    Log.i(name, "Bound to network: " + ni.getTypeName()+ "/" + ni.getSubtypeName());
                     callback.run();
                 }
             }
