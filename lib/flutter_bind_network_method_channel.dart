@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'flutter_bind_network_platform_interface.dart';
 
-const NAMESPACE = 'plugins.agartee.com/network_selector';
+const NAMESPACE = 'plugins.agartee.com/network_binder';
 typedef Future FutureCallback();
 
 /// An implementation of [FlutterBindNetworkPlatform] that uses method channels.

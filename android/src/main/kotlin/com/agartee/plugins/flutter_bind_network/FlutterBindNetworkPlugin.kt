@@ -23,7 +23,7 @@ class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware 
   private lateinit var applicationContext: Context
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_bind_network")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "plugins.agartee.com/network_binder/methods")
     channel.setMethodCallHandler(this)
   }
 
