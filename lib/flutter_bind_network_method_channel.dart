@@ -16,8 +16,9 @@ class FlutterNetworkBinder extends FlutterNetworkBinderPlatform {
 
   Future bindToBluetoothNetworkTemporarily(FutureCallback callback) async {
     await methodChannel.invokeMethod('bindToBluetoothNetwork');
-    await callback();
+    var result = await callback();
     await methodChannel.invokeMapMethod('unBindFromNetwork');
+    return result;
   }
 
   @override
