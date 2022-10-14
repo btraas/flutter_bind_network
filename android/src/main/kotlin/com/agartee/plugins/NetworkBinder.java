@@ -31,6 +31,7 @@ public class NetworkBinder {
                 if(completed[0]) {
                     return;
                 }
+
                 Log.i(name,"Binding to network: " + network.toString());
                 completed[0] = connection_manager.bindProcessToNetwork(network);
                 Network an = connection_manager.getActiveNetwork();

@@ -34,8 +34,19 @@ class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware 
             result.success("bind_success");
         }
     } else if (call.method == "unbind") {
-        NetworkBinder(NetworkCapabilities.TRANSPORT_BLUETOOTH, "Bluetooth").unbind(applicationContext);
-        result.success("unbind_finished");
+          NetworkBinder(NetworkCapabilities.TRANSPORT_BLUETOOTH, "Bluetooth").unbind(
+              applicationContext
+          );
+          result.success("unbind_finished");
+    } else if(call.method == "ping") {
+      var args = call.arguments as Map<String,Any>
+      var host = args["host"] as String
+      var result = KPing.pingHostPort(host,  (args["port"] as? Int) ?: 80, 2000, applicationContext);
+      if(result.succeeded == true) {
+          result.success("ping_success");
+      } else {
+          result.error("0", "Timeout", "Timeout");
+      }
     } else if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else {
