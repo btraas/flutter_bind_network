@@ -11,7 +11,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
-
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
 /** FlutterBindNetworkPlugin */
 class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   /// The MethodChannel that will the communication between Flutter and native Android
