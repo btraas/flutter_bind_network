@@ -8,7 +8,7 @@ abstract class FlutterNetworkBinderPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static FlutterNetworkBinderPlatform _instance = FlutterNetworkBinder();
+  static FlutterNetworkBinderPlatform _instance = FlutterAndroidNetworkBinder();
 
   /// The default instance of [FlutterBindNetworkPlatform] to use.
   ///

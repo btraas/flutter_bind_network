@@ -7,7 +7,7 @@ const NAMESPACE = 'plugins.agartee.com/network_binder';
 typedef Future FutureCallback();
 
 /// An implementation of [FlutterBindNetworkPlatform] that uses method channels.
-class FlutterNetworkBinder extends FlutterNetworkBinderPlatform {
+class FlutterAndroidNetworkBinder extends FlutterNetworkBinderPlatform {
 
   /// The method channel used to interact with the native platform.
   @visibleForTesting
@@ -21,8 +21,9 @@ class FlutterNetworkBinder extends FlutterNetworkBinderPlatform {
     await methodChannel.invokeMethod('unbind');
   }
 
-  Future ping({required String host, required int port}) async {
-    await methodChannel.invokeMethod('ping', [host, port]);
+  Future<bool> ping({required String host, int port = 80, int timeout = 2000}) async {
+    var result = await methodChannel.invokeMethod('ping', [host, port, timeout]);
+    return result == "true";
   }
 
   @override

@@ -41,14 +41,16 @@ class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware 
     } else if(call.method == "ping") {
       var args = call.arguments as ArrayList<Any>
       var host = args[0] as String
+      var port = args[1] as Int
+      var timeoutMS = args[2] as Int
       Thread {
-          var r = KPing.pingHostPort(host,  (args[1] as? Int) ?: 80, 2000, applicationContext);
+          var r = KPing.pingHostPort(host, port, timeoutMS, applicationContext);
           if(r.succeeded == true) {
               println("Ping $host succeeded")
-              result.success("ping_success");
+              result.success("true");
           } else {
               println("Ping $host failed")
-              result.error("0", "Timeout", "Timeout");
+              result.success("false");
           }
       }.start()
     } else if (call.method == "getPlatformVersion") {
