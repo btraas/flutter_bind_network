@@ -30,11 +30,11 @@ class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware 
   override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method == "bindToBluetoothNetwork") {
         NetworkBinder(NetworkCapabilities.TRANSPORT_BLUETOOTH, "Bluetooth").bind(applicationContext) {
-            result.success();
+            result.success("bind_success");
         }
     } else if (call.method == "unbind") {
         NetworkBinder(NetworkCapabilities.TRANSPORT_BLUETOOTH, "Bluetooth").unbind(applicationContext);
-        result.success();
+        result.success("unbind_finished");
     } else if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else {
