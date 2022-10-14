@@ -21,6 +21,13 @@ class FlutterNetworkBinder extends FlutterNetworkBinderPlatform {
     return result;
   }
 
+  Future bindToBluetoothNetwork() async {
+    await methodChannel.invokeMethod('bindToBluetoothNetwork');
+  }
+  Future unbind() async {
+    await methodChannel.invokeMethod('unbind');
+  }
+
   @override
   Future<String?> getPlatformVersion() async {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
