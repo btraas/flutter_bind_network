@@ -49,4 +49,15 @@ class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
       applicationContext = binding.getActivity().getApplicationContext()
   }
+
+  override fun onDetachedFromActivity() {
+
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+
+  }
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+
+  }
 }
