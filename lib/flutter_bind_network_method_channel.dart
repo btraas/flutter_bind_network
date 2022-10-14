@@ -21,6 +21,10 @@ class FlutterNetworkBinder extends FlutterNetworkBinderPlatform {
     await methodChannel.invokeMethod('unbind');
   }
 
+  Future ping({required String host, required int port}) async {
+    await methodChannel.invokeMethod('ping', [host, port]);
+  }
+
   @override
   Future<String?> getPlatformVersion() async {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
