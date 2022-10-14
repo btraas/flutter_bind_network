@@ -23,24 +23,38 @@ public class NetworkBinder {
         NetworkRequest.Builder request = new NetworkRequest.Builder();
         request.addTransportType(transport);
 
+        final boolean[] completed = {false};
+
         connection_manager.requestNetwork(request.build(), new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
+                if(completed[0]) {
+                    return;
+                }
                 Log.i(name,"Binding to network: " + network.toString());
-                connection_manager.bindProcessToNetwork(network);
+                completed[0] = connection_manager.bindProcessToNetwork(network);
                 Network an = connection_manager.getActiveNetwork();
                 NetworkInfo ni = connection_manager.getActiveNetworkInfo();
-                callback.run();
+
+                if(completed[0]) {
+                    callback.run();
+                }
             }
 
             @Override
             public void onCapabilitiesChanged (Network network,
                                                NetworkCapabilities networkCapabilities) {
+                if(completed[0]) {
+                    return;
+                }
                 Log.i(name,"Binding to network: " + network.toString());
-                connection_manager.bindProcessToNetwork(network);
+                completed[0] =connection_manager.bindProcessToNetwork(network);
                 Network an = connection_manager.getActiveNetwork();
                 NetworkInfo ni = connection_manager.getActiveNetworkInfo();
-                callback.run();
+
+                if(completed[0]) {
+                    callback.run();
+                }
             }
         });
     }
