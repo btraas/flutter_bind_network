@@ -39,9 +39,9 @@ class FlutterBindNetworkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware 
           );
           result.success("unbind_finished");
     } else if(call.method == "ping") {
-      var args = call.arguments as Map<String,Any>
-      var host = args["host"] as String
-      var r = KPing.pingHostPort(host,  (args["port"] as? Int) ?: 80, 2000, applicationContext);
+      var args = call.arguments as ArrayList<Any>
+      var host = args[0] as String
+      var r = KPing.pingHostPort(host,  (args[1] as? Int) ?: 80, 2000, applicationContext);
       if(r.succeeded == true) {
           result.success("ping_success");
       } else {
