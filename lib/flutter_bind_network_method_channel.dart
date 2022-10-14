@@ -7,15 +7,14 @@ const NAMESPACE = 'plugins.agartee.com/network_selector';
 typedef Future FutureCallback();
 
 /// An implementation of [FlutterBindNetworkPlatform] that uses method channels.
-class MethodChannelFlutterBindNetwork extends FlutterBindNetworkPlatform {
-
+class FlutterNetworkBinder extends FlutterNetworkBinderPlatform {
 
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('$NAMESPACE/methods');
 
 
-  void bindToBluetoothNetworkTemporarily(FutureCallback callback) async {
+  Future bindToBluetoothNetworkTemporarily(FutureCallback callback) async {
     await methodChannel.invokeMethod('bindToBluetoothNetwork');
     await callback();
     await methodChannel.invokeMapMethod('unBindFromNetwork');
